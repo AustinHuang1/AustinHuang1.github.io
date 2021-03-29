@@ -11,16 +11,16 @@
   
   
   
-  <meta name="description" content="导入定制所需库上节课已经完成了使用 Python 创建一个 docx 文档，内容是朱自清的《背影》。word 文档是有格式的，上次没有使用任何的格式，所以这节课来学习下，如何定制文字的字体和大小。首先第一个，导入 docx 和样式类，如下： 1234from docx import Documentfrom docx.oxml.ns import qnfrom docx.shared import">
+  <meta name="description" content="然后新建 Document，以及添加一个标题，如下： 1  对比以前的两行代码，这里的代码量就很多了，详细介绍下：  新建 document 后，给 style[‘Normal’] 设置整体的字体格式，第一行是英文字体，第二行是中文字体 从 title 的定义开始，title 是添加了一个空标题 title 第二行，设置居中对齐。默认是左对齐 然后设置 title，添加文字对象“背影”，对象保存到">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python自动化 world 定制文字字体和大小">
 <meta property="og:url" content="https://austinhuang1.github.io/2021/03/28/Python%E8%87%AA%E5%8A%A8%E5%8C%96-world-%E5%AE%9A%E5%88%B6%E6%96%87%E5%AD%97%E5%AD%97%E4%BD%93%E5%92%8C%E5%A4%A7%E5%B0%8F/index.html">
 <meta property="og:site_name" content="Austin&#39;s Codelearning Website">
-<meta property="og:description" content="导入定制所需库上节课已经完成了使用 Python 创建一个 docx 文档，内容是朱自清的《背影》。word 文档是有格式的，上次没有使用任何的格式，所以这节课来学习下，如何定制文字的字体和大小。首先第一个，导入 docx 和样式类，如下： 1234from docx import Documentfrom docx.oxml.ns import qnfrom docx.shared import">
+<meta property="og:description" content="然后新建 Document，以及添加一个标题，如下： 1  对比以前的两行代码，这里的代码量就很多了，详细介绍下：  新建 document 后，给 style[‘Normal’] 设置整体的字体格式，第一行是英文字体，第二行是中文字体 从 title 的定义开始，title 是添加了一个空标题 title 第二行，设置居中对齐。默认是左对齐 然后设置 title，添加文字对象“背影”，对象保存到">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/e95ef7a8498176fb760e6ebaf342db27.png">
 <meta property="article:published_time" content="2021-03-29T02:08:52.000Z">
-<meta property="article:modified_time" content="2021-03-29T02:13:28.411Z">
+<meta property="article:modified_time" content="2021-03-29T02:21:14.403Z">
 <meta property="article:author" content="Austin Huang">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
@@ -209,12 +209,8 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="导入定制所需库"><a href="#导入定制所需库" class="headerlink" title="导入定制所需库"></a>导入定制所需库</h1><p>上节课已经完成了使用 Python 创建一个 docx 文档，内容是朱自清的《背影》。<br>word 文档是有格式的，上次没有使用任何的格式，所以这节课来学习下，如何定制文字的字体和大小。<br>首先第一个，导入 docx 和样式类，如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> docx <span class="keyword">import</span> Document</span><br><span class="line"><span class="keyword">from</span> docx.oxml.ns <span class="keyword">import</span> qn</span><br><span class="line"><span class="keyword">from</span> docx.shared <span class="keyword">import</span> Pt,RGBColor</span><br><span class="line"><span class="keyword">from</span> docx.enum.text <span class="keyword">import</span> WD_ALIGN_PARAGRAPH</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="标题定制化大小和字体"><a href="#标题定制化大小和字体" class="headerlink" title="标题定制化大小和字体"></a>标题定制化大小和字体</h1><p>然后新建 Document，以及添加一个标题，如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">document = Document()</span><br><span class="line">document.styles[<span class="string">&#x27;Normal&#x27;</span>].font.name = <span class="string">u&quot;宋体&quot;</span></span><br><span class="line">document.styles[<span class="string">&#x27;Normal&#x27;</span>]._element.rPr.rFonts.<span class="built_in">set</span>(qn(<span class="string">&#x27;w:eastAsia&#x27;</span>),<span class="string">u&#x27;宋体&#x27;</span>)</span><br><span class="line"></span><br><span class="line">title = document.add_heading(<span class="number">0</span>)</span><br><span class="line">title.alignment = WD_ALIGN_PARAGRAPH.CENTER</span><br><span class="line">run = title.add_run(<span class="string">&#x27;背影&#x27;</span>)</span><br><span class="line">run.font.name = <span class="string">u&quot;宋体&quot;</span></span><br><span class="line">run.font.size = Pt(<span class="number">22</span>)</span><br><span class="line">run._element.rPr.rFonts.<span class="built_in">set</span>(qn(<span class="string">&#x27;w:eastAsia&#x27;</span>),<span class="string">u&#x27;宋体&#x27;</span>)</span><br><span class="line">run.font.bold = <span class="literal">True</span></span><br><span class="line">run.font.color.rgb = RGBColor(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+        <p>然后新建 Document，以及添加一个标题，如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>对比以前的两行代码，这里的代码量就很多了，详细介绍下：</p>
 <ul>
@@ -348,7 +344,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E5%AE%9A%E5%88%B6%E6%89%80%E9%9C%80%E5%BA%93"><span class="nav-number">1.</span> <span class="nav-text">导入定制所需库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%87%E9%A2%98%E5%AE%9A%E5%88%B6%E5%8C%96%E5%A4%A7%E5%B0%8F%E5%92%8C%E5%AD%97%E4%BD%93"><span class="nav-number">2.</span> <span class="nav-text">标题定制化大小和字体</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%AE%B5%E8%90%BD%E5%AD%97%E4%BD%93%E5%92%8C%E5%A4%A7%E5%B0%8F"><span class="nav-number">3.</span> <span class="nav-text">设置段落字体和大小</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B0%E5%A2%9E%E7%94%9F%E6%88%90%E6%97%A5%E6%9C%9F"><span class="nav-number">4.</span> <span class="nav-text">新增生成日期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C"><span class="nav-number">5.</span> <span class="nav-text">最终效果</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%AE%B5%E8%90%BD%E5%AD%97%E4%BD%93%E5%92%8C%E5%A4%A7%E5%B0%8F"><span class="nav-number">1.</span> <span class="nav-text">设置段落字体和大小</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B0%E5%A2%9E%E7%94%9F%E6%88%90%E6%97%A5%E6%9C%9F"><span class="nav-number">2.</span> <span class="nav-text">新增生成日期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C"><span class="nav-number">3.</span> <span class="nav-text">最终效果</span></a></li></ol>
     
     </div>
   </aside>
